@@ -1,12 +1,14 @@
 package servlets;
 
 import accounts.AccountService;
+import accounts.UserProfile;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * @author v.chibrikov
@@ -32,7 +34,17 @@ public class UsersServlet extends HttpServlet {
     //sign up
     public void doPost(HttpServletRequest request,
                        HttpServletResponse response) throws ServletException, IOException {
-        //todo: module 2 home work
+        Optional<String> loginOptional = Optional.ofNullable(request.getParameter("login"));
+
+        if (loginOptional.isPresent()) {
+            String login = loginOptional.get();
+            accountService.addNewUser(new UserProfile(login));
+            accountService.addSession(request.getSession().getId(), new UserProfile(login));
+            response.setStatus(HttpServletResponse.SC_OK);
+        } else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+        response.setContentType("text/html;charset=utf-8");
     }
 
     //change profile
