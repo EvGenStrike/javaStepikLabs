@@ -11,6 +11,7 @@ package dbService.dataSets;
 public class UsersDataSet {
     private long id;
     private String name;
+    private String password;
 
     public UsersDataSet(long id, String name) {
         this.id = id;
@@ -23,6 +24,10 @@ public class UsersDataSet {
 
     public long getId() {
         return id;
+    }
+
+    public String getPassword(){
+        return password;
     }
 
     @Override
