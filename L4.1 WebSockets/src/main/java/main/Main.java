@@ -8,6 +8,8 @@ import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
+import java.util.logging.Logger;
+
 /**
  * @author v.chibrikov
  *         <p/>
@@ -31,6 +33,7 @@ public class Main {
         server.setHandler(handlers);
 
         server.start();
+        Logger.getGlobal().info("Server started");
         server.join();
     }
 }
