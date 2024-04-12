@@ -1,1 +1,2 @@
-java -jar GoEuroTest.jar Berlin
+java -jar tester.jar
+pause
